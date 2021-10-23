@@ -40,13 +40,13 @@
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/busyGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/foodQuestion">
+        app:layout_constraintTop_toBottomOf="@id/busyQuestion">
 
         <RadioButton
             android:id="@+id/notBusy"
@@ -82,16 +82,16 @@
         android:text="How much food is in the dining hall?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
+        app:layout_constraintTop_toBottomOf="@id/busyGroup" />
 
     <RadioGroup
-        android:id="@+id/radioGroup2"
+        android:id="@+id/foodGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/busyQuestion">
+        app:layout_constraintTop_toBottomOf="@id/foodQuestion">
 
         <RadioButton
             android:id="@+id/lowFood"
@@ -125,5 +125,5 @@
         android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@id/foodGroup" />
 </androidx.constraintlayout.widget.ConstraintLayout>
