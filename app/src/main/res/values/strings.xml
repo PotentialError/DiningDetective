@@ -2,7 +2,6 @@
     <string name="app_name">DiningDetective</string>
     <string-array name="dining_array">
         <item>Brittain</item>
-        <item>Venus</item>
         <item>West Village</item>
         <item>North Ave</item>
     </string-array>
