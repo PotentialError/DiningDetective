@@ -21,5 +21,12 @@ public class HomeScreen extends AppCompatActivity {
                 startActivity(new Intent(view.getContext(), MainActivity.class));
             }
         });
+        Button predictButton = findViewById(R.id.resultButton);
+        predictButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), ResultActivity.class));
+            }
+        });
     }
 }
