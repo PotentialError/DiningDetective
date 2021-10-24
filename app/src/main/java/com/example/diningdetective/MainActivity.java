@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 addData(fileName, data[0]+","+data[1]+","+data[2]+","+data[3]);
                 Toast.makeText(getBaseContext(), "Sucessfully submitted", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(v.getContext(), HomeScreen.class));
             } else if(busyGroup.getCheckedRadioButtonId() == -1) {
                 Toast.makeText(getBaseContext(), "Select how busy the dining hall is", Toast.LENGTH_SHORT).show();
             } else {
