@@ -12,7 +12,7 @@ public class JavaRunCommand {
             //String contains the path of the python file and the py command to activate python in cmd
             String[] cmd = {
                     "py",
-                    "C:\\Users\\andyg\\PycharmProjects\\pythonProject\\main.py"
+                    "\\dining_predictor.py"
             };
             // runs the python file specified above using the Runtime exec method:
             Process p = Runtime.getRuntime().exec(cmd);
