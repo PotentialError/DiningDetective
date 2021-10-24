@@ -32,14 +32,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        makeFile();
-        String[] columnTitles = new String[] {"Day","Time","Busy Level", "Food Availability"};
-        ArrayList<String[]> brittainData = new ArrayList<>();
-        brittainData.add(0, columnTitles);
-        ArrayList<String[]> westData = new ArrayList<>();
-        westData.add(0, columnTitles);
-        ArrayList<String[]> navData = new ArrayList<>();
-        navData.add(0, columnTitles);
+        makeHeader("brittain.csv");
+        makeHeader("west.csv");
+        makeHeader("nav.csv");
         RadioGroup busyGroup = findViewById(R.id.busyGroup);
         RadioGroup foodGroup = findViewById(R.id.foodGroup);
         busyGroup.setOnCheckedChangeListener((group, checkedId) -> {
@@ -88,17 +83,19 @@ public class MainActivity extends AppCompatActivity {
         submitButton.setOnClickListener(v -> {
             if(busyGroup.getCheckedRadioButtonId() != -1 && foodGroup.getCheckedRadioButtonId() != -1) {
                 String[] data = new String[4];
+                String fileName;
                 data[0] = "" + (Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1);
                 data[1] = "" + Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
                 data[2] = "" + busyNum;
                 data[3] = "" + foodNum;
                 if(diningHallNum == 0) {
-                    brittainData.add(data);
+                    fileName = "brittain.csv";
                 } else if(diningHallNum == 1) {
-                    westData.add(data);
+                    fileName = "west.csv";
                 } else {
-                    navData.add(data);
+                    fileName = "nav.csv";
                 }
+                addData(fileName, data[0]+","+data[1]+","+data[2]+","+data[3]);
                 Toast.makeText(getBaseContext(), "Sucessfully submitted", Toast.LENGTH_SHORT).show();
             } else if(busyGroup.getCheckedRadioButtonId() == -1) {
                 Toast.makeText(getBaseContext(), "Select how busy the dining hall is", Toast.LENGTH_SHORT).show();
@@ -107,40 +104,66 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void makeFile() {
+    private void makeHeader(String fileName) {
         Context context = getApplicationContext();
-        String data="my Info to save";
 
-        try(FileInputStream fin = context.openFileInput("text.txt")) {
+        try(FileInputStream fin = context.openFileInput(fileName)) {
             fin.close();
-            Toast.makeText(getBaseContext(), "File exists", Toast.LENGTH_SHORT).show();
+            Log.d("Tag", fileName + " File exists");
         } catch (FileNotFoundException e) {
-            File file = new File(context.getFilesDir(), "text.txt");
-            Toast.makeText(getBaseContext(), "File does not exist", Toast.LENGTH_SHORT).show();
+            File file = new File(context.getFilesDir(), fileName);
+            Log.d("TAG", fileName + " File does not exist");
+            try {
+                FileOutputStream fOut = new FileOutputStream(file, true);
+                fOut.write("Day,Time,Busy Level,Food Availability".getBytes());
+                fOut.close();
+                Log.d("TAG",fileName + " file saved");
+            }
+            catch (Exception d) {
+                d.printStackTrace();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         try {
-            FileOutputStream fOut = openFileOutput("text.txt", Context.MODE_PRIVATE);
-            fOut.write(data.getBytes());
-            fOut.close();
-            Toast.makeText(getBaseContext(), "file saved", Toast.LENGTH_SHORT).show();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            FileInputStream fin = context.openFileInput("text.txt");
+            FileInputStream fin = context.openFileInput(fileName);
             int c;
             String temp="";
 
             while( (c = fin.read()) != -1){
-                temp = temp + c;
+                temp = temp + ((char)c);
             }
-            Toast.makeText(getBaseContext(), "file read with: " + temp, Toast.LENGTH_SHORT).show();
+            Log.d("TAG",fileName+" file read with: " + temp);
         }
         catch(Exception e){
-            Toast.makeText(getBaseContext(), "error", Toast.LENGTH_SHORT).show();
+            Log.d("TAG","error reading " + fileName);
+        }
+    }
+    private void addData(String fileName, String message) {
+        Context context = getApplicationContext();
+        try {
+            File file = new File(context.getFilesDir(), fileName);
+            FileOutputStream fOut = new FileOutputStream(file, true);
+            fOut.write(("\n"+message).getBytes());
+            fOut.close();
+            Log.d("TAG",fileName + " file saved");
+        }
+        catch (Exception d) {
+            d.printStackTrace();
+        }
+        try {
+            FileInputStream fin = context.openFileInput(fileName);
+            int c;
+            String temp="";
+
+            while( (c = fin.read()) != -1){
+                temp = temp + ((char)c);
+            }
+            Log.d("TAG",fileName+" file read with: " + temp);
+        }
+        catch(Exception e){
+            Log.d("TAG","error reading " + fileName);
         }
     }
 }

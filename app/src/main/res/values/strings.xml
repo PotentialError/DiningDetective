@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DiningDetective</string>
+    <string name="app_name">Dining Detective</string>
     <string-array name="dining_array">
         <item>Brittain</item>
         <item>West Village</item>

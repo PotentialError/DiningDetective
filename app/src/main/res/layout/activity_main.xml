@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     android:layout_margin="20dp"
     tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="How's Dining Right Now?"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
@@ -20,7 +35,8 @@
         android:text="What dining hall are you in?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        android:textSize="20dp"/>
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="wrap_content"
@@ -28,7 +44,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/diningHallQuestion" />
+        app:layout_constraintTop_toBottomOf="@id/diningHallQuestion"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
     <TextView
         android:id="@+id/busyQuestion"
         android:layout_width="wrap_content"
@@ -37,7 +55,8 @@
         android:text="How busy is the dining hall?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner"
+        android:textSize="20dp"/>
 
     <RadioGroup
         android:id="@+id/busyGroup"
@@ -82,7 +101,8 @@
         android:text="How much food is in the dining hall?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/busyGroup" />
+        app:layout_constraintTop_toBottomOf="@id/busyGroup"
+        android:textSize="20dp"/>
 
     <RadioGroup
         android:id="@+id/foodGroup"
@@ -125,5 +145,49 @@
         android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/foodGroup" />
+        app:layout_constraintTop_toBottomOf="@id/foodGroup"
+        android:background="#003057"
+        android:textSize="20dp"
+        android:padding="20dp"
+        />
+
+    <TextView
+        android:id="@+id/notBusyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Not Busy"
+        app:layout_constraintBottom_toBottomOf="@+id/busyGroup"
+        app:layout_constraintEnd_toStartOf="@+id/busyGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/busyQuestion" />
+
+    <TextView
+        android:id="@+id/veryBusyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Very Busy"
+        app:layout_constraintBottom_toBottomOf="@+id/busyGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/busyGroup"
+        app:layout_constraintTop_toBottomOf="@+id/busyQuestion" />
+
+    <TextView
+        android:id="@+id/lowFoodText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Low Food"
+        app:layout_constraintBottom_toBottomOf="@+id/foodGroup"
+        app:layout_constraintEnd_toStartOf="@+id/foodGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodQuestion" />
+
+    <TextView
+        android:id="@+id/highFoodText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="High Food"
+        app:layout_constraintBottom_toBottomOf="@+id/foodGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/foodGroup"
+        app:layout_constraintTop_toBottomOf="@+id/foodQuestion" />
 </androidx.constraintlayout.widget.ConstraintLayout>
