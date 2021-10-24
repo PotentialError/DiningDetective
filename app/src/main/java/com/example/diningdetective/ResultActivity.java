@@ -1,7 +1,6 @@
 package com.example.diningdetective;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import com.chaquo.python.PyObject;
+import com.chaquo.python.Python;
+import com.chaquo.python.android.AndroidPlatform;
 
 public class ResultActivity extends AppCompatActivity {
     TextView foodText;
@@ -29,6 +31,14 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 ((TextView) parentView.getChildAt(0)).setTextSize(18);
+                initPython();
+                Python python = Python.getInstance();
+                PyObject pythonFile = python.getModule("dining_predictor");
+                String str = pythonFile.callAttr("predict").toString();
+                String foodStr = str.substring(0, str.indexOf(',')) + " FOOD";
+                String peopleStr = str.substring(str.indexOf(',')+2, str.length()) + " PEOPLE";
+                foodText.setText(foodStr);
+                peopleText.setText(peopleStr);
             }
 
             @Override
@@ -43,5 +53,11 @@ public class ResultActivity extends AppCompatActivity {
                 startActivity(new Intent(view.getContext(), HomeScreen.class));
             }
         });
+    }
+
+    private void initPython() {
+        if (! Python.isStarted()) {
+            Python.start(new AndroidPlatform(this));
+        }
     }
 }
