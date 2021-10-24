@@ -21,6 +21,6 @@ Download and install the APK found in the root directory on your Android phone.
 
 # Credits
 
-Michael Rodyushkin @PotentialError
-Andrew Gao @AndrewGao1
-Stefan Tserovski @tserovskis
+Michael Rodyushkin @PotentialError  
+Andrew Gao @AndrewGao1  
+Stefan Tserovski @tserovskis  
