@@ -96,15 +96,15 @@ def predict():
     x = np.array([[1, 12]])
     y = abs(model.predict(x))
     if y[0][0] < 1 :
-      s = "FEW"
+      s = "LOTS OF"
     elif y[0][0] < 2 :
       s = "SOME"
     else:
-      s = "LOTS OF"
+      s = "LITTLE"
     if y[0][1] < 1 :
-      s = s + ", LOTS OF"
+      s = s + ", FEW"
     elif y[0][1] < 2 :
       s = s + ", SOME"
     else:
-      s = s + ", LITTLE"
+      s = s + ", LOTS OF"
     return s
