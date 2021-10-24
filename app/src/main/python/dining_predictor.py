@@ -7,7 +7,7 @@ from tensorflow.keras import layers
 from tensorflow.keras import callbacks
 import random
 
-def predict():
+def predict(day, time):
     #using numpy's randint
     df = pd.DataFrame(np.random.randint(0,7,size=(1000, 0)))
     # create a new column
@@ -93,7 +93,7 @@ def predict():
         epochs=600,
         verbose=0,
     )
-    x = np.array([[1, 12]])
+    x = np.array([[day, time]])
     y = abs(model.predict(x))
     if y[0][0] < 1 :
       s = "LOTS OF"

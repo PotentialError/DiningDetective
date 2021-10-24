@@ -13,6 +13,8 @@ import com.chaquo.python.PyObject;
 import com.chaquo.python.Python;
 import com.chaquo.python.android.AndroidPlatform;
 
+import java.util.Calendar;
+
 public class ResultActivity extends AppCompatActivity {
     TextView foodText;
     TextView peopleText;
@@ -34,7 +36,9 @@ public class ResultActivity extends AppCompatActivity {
                 initPython();
                 Python python = Python.getInstance();
                 PyObject pythonFile = python.getModule("dining_predictor");
-                String str = pythonFile.callAttr("predict").toString();
+                int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) - 1;
+                int time = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+                String str = pythonFile.callAttr("predict", day, time).toString();
                 String foodStr = str.substring(0, str.indexOf(',')) + " FOOD";
                 String peopleStr = str.substring(str.indexOf(',')+2, str.length()) + " PEOPLE";
                 foodText.setText(foodStr);
