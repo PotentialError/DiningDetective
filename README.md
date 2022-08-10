@@ -1,5 +1,5 @@
 # DiningDetective
-Dining Detective is an app that uses a neural network to predict when the dining halls at Georgia Tech will be busy and whether or not they are low on food.
+Dining Detective is an app that uses a neural network to predict when the dining halls at Georgia Tech will be busy and whether or not they are low on food. Watch a demo of our app **[HERE](https://www.youtube.com/watch?v=GUZwAceeBcs&ab_channel=MashinaR)**.
 
 # Inspiration 
 We were inspired by waiting in line at the Brittain dining hall for over **30 minutes** while trying to get lunch last week, and when we finally got to the front there was little food left, and we had to wait an additional 10 minutes for fresh food to be brought out.
